@@ -1,0 +1,29 @@
+provider "google" {
+  version = "3.5.0"
+
+
+  project = "gautham-dev"
+  region  = "us-east1"
+  zone    = "us-east11-b"
+}
+
+ resource "google_compute_instance" "vm_instance" {
+  name = "terraform-inst"
+  machine_type = "e2-medium"
+  zone = "us-east1-b"
+
+	boot_disk{
+	 initialize_params {
+	  image = "debian-cloud/debian-9"
+ } 
+}
+
+network_interface{
+	network= "default"
+}
+}
+
+resource "google_compute_network" "vpc_network" {
+  name = "terraform-network"
+}
+
